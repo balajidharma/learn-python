@@ -5,7 +5,7 @@ import os
 NOTEBOOKS = [
     ("01_Introduction/01_Introduction.ipynb", "Introduction"),
     ("02_Setup_Environment/01_Setup_Environment.ipynb", "Setup Environment"),
-    ("03_Basic Syntax/01_Basic_Syntax.ipynb", "Basic Syntax"),
+    ("03_Basic_Syntax/01_Basic_Syntax.ipynb", "Basic Syntax"),
     ("04_Variables_Data_Types/01_Variables.ipynb", "Variables"),
     ("04_Variables_Data_Types/02_Data_Types.ipynb", "Data Types"),
     ("05_Operators/01_Operators.ipynb", "Operators"),
