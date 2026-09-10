@@ -1,53 +1,29 @@
 import json
 import os
+import sys
 
-# Ordered list of all notebooks: (relative path from repo root, display title)
-NOTEBOOKS = [
-    ("01_Introduction/01_Introduction.ipynb", "Introduction"),
-    ("02_Setup_Environment/01_Setup_Environment.ipynb", "Setup Environment"),
-    ("03_Basic_Syntax/01_Basic_Syntax.ipynb", "Basic Syntax"),
-    ("04_Variables_Data_Types/01_Variables.ipynb", "Variables"),
-    ("04_Variables_Data_Types/02_Data_Types.ipynb", "Data Types"),
-    ("05_Operators/01_Operators.ipynb", "Operators"),
-    ("05_Operators/02_Arithmetic_Operators.ipynb", "Arithmetic Operators"),
-    ("05_Operators/03_Assignment_Operators.ipynb", "Assignment Operators"),
-    ("05_Operators/04_Comparison_Operators.ipynb", "Comparison Operators"),
-    ("05_Operators/05_Logical_Operators.ipynb", "Logical Operators"),
-    ("05_Operators/06_Bitwise_Operators.ipynb", "Bitwise Operators"),
-    ("05_Operators/07_Special_Operators.ipynb", "Special Operators"),
-    ("06_Strings/01_Strings.ipynb", "Strings"),
-    ("07_Typecasting/01_Typecasting.ipynb", "Typecasting"),
-    ("09_Loops/01_Loops.ipynb", "Loops"),
-    ("10_Functions/01_Functions.ipynb", "Functions"),
-    ("11_Collections/01_Collections.ipynb", "Collections"),
-    ("12_Lists/01_Lists.ipynb", "Lists"),
-    ("13_Tuples/01_Tuples.ipynb", "Tuples"),
-    ("14_Sets/01_Sets.ipynb", "Sets"),
-    ("15_Dictionaries/01_Dictionaries.ipynb", "Dictionaries"),
-    ("17_User_Input/01_User_Input.ipynb", "User Input"),
-]
-
-GITHUB_REPO = "https://github.com/balajidharma/learn-python"
-LOGO_URL = "https://raw.githubusercontent.com/balajidharma/learn-python/refs/heads/main/assets/images/logo.svg"
+# Allow running from anywhere — resolve sibling notebooks.py
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from notebooks import GITHUB_REPO, LOGO_URL_RAW, discover_notebooks
 
 NAV_IDS = {"nav-top", "nav-bottom"}
 
 
-def make_nav_cell(index, position):
+def make_nav_cell(index, position, notebooks):
     """Build a nav cell. position is 'top' or 'bottom'."""
-    path, _ = NOTEBOOKS[index]
+    path, _ = notebooks[index]
     nb_dir = os.path.dirname(path)
     parts = []
 
     if index > 0:
-        prev_path, prev_title = NOTEBOOKS[index - 1]
+        prev_path, prev_title = notebooks[index - 1]
         prev_rel = os.path.relpath(prev_path, nb_dir).replace("\\", "/")
         parts.append(f"[← Previous: {prev_title}]({prev_rel})")
 
     parts.append("[🏠 Home](../README.md)")
 
-    if index < len(NOTEBOOKS) - 1:
-        next_path, next_title = NOTEBOOKS[index + 1]
+    if index < len(notebooks) - 1:
+        next_path, next_title = notebooks[index + 1]
         next_rel = os.path.relpath(next_path, nb_dir).replace("\\", "/")
         parts.append(f"[Next: {next_title} →]({next_rel})")
 
@@ -57,7 +33,7 @@ def make_nav_cell(index, position):
         source = (
             f'<div align="center">\n'
             f'  <a href="{GITHUB_REPO}">'
-            f'<img src="{LOGO_URL}" alt="Learn Python" height="180"></a>\n'
+            f'<img src="{LOGO_URL_RAW}" alt="Learn Python" height="60"></a>\n'
             f'  <br><br>\n'
             f'  <a href="{GITHUB_REPO}">⭐ Star on GitHub</a>'
             f' &nbsp;|&nbsp; '
@@ -113,8 +89,8 @@ def make_stub_nb(title):
     }
 
 
-def process_notebook(index, base_dir="."):
-    path, title = NOTEBOOKS[index]
+def process_notebook(index, notebooks, base_dir):
+    path, title = notebooks[index]
     full_path = os.path.join(base_dir, path)
 
     if not os.path.exists(full_path):
@@ -135,8 +111,8 @@ def process_notebook(index, base_dir="."):
     # Remove any previously added nav cells
     cells = [c for c in nb.get("cells", []) if not is_nav_cell(c)]
 
-    nav_top = make_nav_cell(index, "top")
-    nav_bottom = make_nav_cell(index, "bottom")
+    nav_top    = make_nav_cell(index, "top",    notebooks)
+    nav_bottom = make_nav_cell(index, "bottom", notebooks)
 
     # Layout: nav_top → heading → content → nav_bottom
     if cells and cells[0].get("cell_type") == "markdown":
@@ -155,15 +131,17 @@ def process_notebook(index, base_dir="."):
 
 
 def main():
-    # Script lives in .scripts/ — go one level up to reach the repo root
+    # Script lives in .scripts/ — one level up is the repo root
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    notebooks = discover_notebooks(base_dir)
+
     print(f"Repo root: {base_dir}")
-    print(f"Processing {len(NOTEBOOKS)} notebooks...\n")
+    print(f"Found {len(notebooks)} notebooks\n")
 
-    for i in range(len(NOTEBOOKS)):
-        process_notebook(i, base_dir)
+    for i in range(len(notebooks)):
+        process_notebook(i, notebooks, base_dir)
 
-    print("\nDone! Each notebook now has a logo + GitHub link at the top and nav links top and bottom.")
+    print("\nDone! Each notebook now has nav-top and nav-bottom.")
 
 
 if __name__ == "__main__":
