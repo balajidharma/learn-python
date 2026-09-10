@@ -28,7 +28,7 @@ NOTEBOOKS = [
 ]
 
 GITHUB_REPO = "https://github.com/balajidharma/learn-python"
-LOGO_URL = "https://raw.githubusercontent.com/balajidharma/learn-python/asset/images/logo.svg"
+LOGO_URL = "https://raw.githubusercontent.com/balajidharma/learn-python/refs/heads/main/assets/images/logo.svg"
 
 NAV_IDS = {"nav-top", "nav-bottom"}
 
@@ -57,7 +57,7 @@ def make_nav_cell(index, position):
         source = (
             f'<div align="center">\n'
             f'  <a href="{GITHUB_REPO}">'
-            f'<img src="{LOGO_URL}" alt="Learn Python" height="60"></a>\n'
+            f'<img src="{LOGO_URL}" alt="Learn Python" height="180"></a>\n'
             f'  <br><br>\n'
             f'  <a href="{GITHUB_REPO}">⭐ Star on GitHub</a>'
             f' &nbsp;|&nbsp; '
