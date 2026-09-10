@@ -4,8 +4,8 @@ import re
 # ── Config ────────────────────────────────────────────────────────────────────
 
 GITHUB_REPO  = "https://github.com/balajidharma/learn-python"
-LOGO_SVG     = "./asset/images/logo.svg"
-LOGO_URL_RAW = "https://raw.githubusercontent.com/balajidharma/learn-python/asset/images/logo.svg"
+LOGO_SVG     = "./assets/images/logo.svg"
+LOGO_URL_RAW = "https://raw.githubusercontent.com/balajidharma/learn-python/assets/images/logo.svg"
 
 # Folders to skip when auto-discovering notebooks
 SKIP_DIRS = {".scripts", ".git", "__pycache__", ".ipynb_checkpoints"}
