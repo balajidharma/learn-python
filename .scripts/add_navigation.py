@@ -5,7 +5,7 @@ import os
 NOTEBOOKS = [
     ("01_Introduction/01_Introduction.ipynb", "Introduction"),
     ("02_Setup_Environment/01_Setup_Environment.ipynb", "Setup Environment"),
-    ("03_Basic_Syntax/01_Basic_Syntax.ipynb", "Basic Syntax"),
+    ("03_Basic Syntax/01_Basic_Syntax.ipynb", "Basic Syntax"),
     ("04_Variables_Data_Types/01_Variables.ipynb", "Variables"),
     ("04_Variables_Data_Types/02_Data_Types.ipynb", "Data Types"),
     ("05_Operators/01_Operators.ipynb", "Operators"),
@@ -26,6 +26,9 @@ NOTEBOOKS = [
     ("15_Dictionaries/01_Dictionaries.ipynb", "Dictionaries"),
     ("17_User_Input/01_User_Input.ipynb", "User Input"),
 ]
+
+GITHUB_REPO = "https://github.com/balajidharma/learn-python"
+LOGO_URL = "https://raw.githubusercontent.com/balajidharma/learn-python/asset/images/logo.svg"
 
 NAV_IDS = {"nav-top", "nav-bottom"}
 
@@ -48,12 +51,29 @@ def make_nav_cell(index, position):
         next_rel = os.path.relpath(next_path, nb_dir).replace("\\", "/")
         parts.append(f"[Next: {next_title} →]({next_rel})")
 
-    nav_text = " &nbsp;|&nbsp; ".join(parts)
+    nav_links = " &nbsp;|&nbsp; ".join(parts)
+
+    if position == "top":
+        source = (
+            f'<div align="center">\n'
+            f'  <a href="{GITHUB_REPO}">'
+            f'<img src="{LOGO_URL}" alt="Learn Python" height="60"></a>\n'
+            f'  <br><br>\n'
+            f'  <a href="{GITHUB_REPO}">⭐ Star on GitHub</a>'
+            f' &nbsp;|&nbsp; '
+            f'<a href="{GITHUB_REPO}">📚 Learn Python</a>\n'
+            f'</div>\n\n'
+            f'---\n'
+            f'{nav_links}'
+        )
+    else:
+        source = f"---\n{nav_links}"
+
     return {
         "cell_type": "markdown",
         "id": f"nav-{position}",
         "metadata": {},
-        "source": [f"---\n{nav_text}"],
+        "source": [source],
     }
 
 
@@ -64,8 +84,8 @@ def is_nav_cell(cell):
     src = "".join(cell.get("source", []))
     return (
         cell.get("cell_type") == "markdown"
-        and src.startswith("---\n")
-        and ("← Previous" in src or "Next:" in src or "🏠 Home" in src)
+        and ("← Previous" in src or "🏠 Home" in src)
+        and ("nav" in cell.get("id", "") or src.startswith("---\n") or "balajidharma/learn-python" in src)
     )
 
 
@@ -118,7 +138,7 @@ def process_notebook(index, base_dir="."):
     nav_top = make_nav_cell(index, "top")
     nav_bottom = make_nav_cell(index, "bottom")
 
-    # Layout: heading → nav_top → content → nav_bottom
+    # Layout: nav_top → heading → content → nav_bottom
     if cells and cells[0].get("cell_type") == "markdown":
         heading = [cells[0]]
         content = cells[1:]
@@ -143,7 +163,7 @@ def main():
     for i in range(len(NOTEBOOKS)):
         process_notebook(i, base_dir)
 
-    print("\nDone! Each notebook now has nav-top after the heading and nav-bottom at the end.")
+    print("\nDone! Each notebook now has a logo + GitHub link at the top and nav links top and bottom.")
 
 
 if __name__ == "__main__":
