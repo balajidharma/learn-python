@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://github.com/balajidharma/learn-python">
-    <img src="./logo.svg" alt="Learn Python" width="480">
+    <img src="./asset/images/logo.svg" alt="Learn Python" width="480">
   </a>
   <br><br>
   <p>A step-by-step guide to learn Python programming from basics to advanced topics.</p>
