@@ -52,19 +52,21 @@
 
 **09.** 📄 [Functions](10_Functions/01_Functions.ipynb)
 
-**10.** 📄 [User Input](17_User_Input/01_User_Input.ipynb)
+**10.** 📄 [Exceptions](16_Exceptions/01_Exceptions.ipynb)
+
+**11.** 📄 [User Input](17_User_Input/01_User_Input.ipynb)
 
 ### 📦 Collections
 
-**11.** 📄 [Collections](11_Collections/01_Collections.ipynb)
+**12.** 📄 [Collections](11_Collections/01_Collections.ipynb)
 
-**12.** 📄 [Lists](12_Lists/01_Lists.ipynb)
+**13.** 📄 [Lists](12_Lists/01_Lists.ipynb)
 
-**13.** 📄 [Tuples](13_Tuples/01_Tuples.ipynb)
+**14.** 📄 [Tuples](13_Tuples/01_Tuples.ipynb)
 
-**14.** 📄 [Sets](14_Sets/01_Sets.ipynb)
+**15.** 📄 [Sets](14_Sets/01_Sets.ipynb)
 
-**15.** 📄 [Dictionaries](15_Dictionaries/01_Dictionaries.ipynb)
+**16.** 📄 [Dictionaries](15_Dictionaries/01_Dictionaries.ipynb)
 
 ---
 

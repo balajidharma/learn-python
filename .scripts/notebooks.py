@@ -7,9 +7,10 @@ GITHUB_REPO  = "https://github.com/balajidharma/learn-python"
 LOGO_SVG     = "./assets/images/logo.svg"
 LOGO_URL_RAW = "https://raw.githubusercontent.com/balajidharma/learn-python/main/assets/images/logo.svg"
 
+
 # Folders to skip when auto-discovering notebooks
 SKIP_DIRS = {".scripts", ".git", "__pycache__", ".ipynb_checkpoints"}
-
+ 
 # Map folder prefix → section heading (prefix = leading digits of folder name)
 SECTION_MAP = {
     "01": "Getting Started",
@@ -27,18 +28,18 @@ SECTION_MAP = {
     "13": "Collections",
     "14": "Collections",
     "15": "Collections",
-    "16": "Collections",
+    "16": "Language Features",
     "17": "Language Features",
 }
-
+ 
 # ── Auto-discovery ─────────────────────────────────────────────────────────────
-
+ 
 def folder_prefix(name):
     """Return the leading numeric prefix of a folder name, e.g. '05' from '05_Operators'."""
     m = re.match(r"^(\d+)", name)
     return m.group(1) if m else ""
-
-
+ 
+ 
 def notebook_title(path):
     """
     Derive a human-readable title from a notebook filename.
@@ -47,8 +48,8 @@ def notebook_title(path):
     stem = os.path.splitext(os.path.basename(path))[0]   # strip .ipynb
     stem = re.sub(r"^\d+_", "", stem)                     # strip leading number
     return stem.replace("_", " ")
-
-
+ 
+ 
 def discover_notebooks(base_dir):
     """
     Walk base_dir, find all .ipynb files, sort by folder then filename,
@@ -68,9 +69,10 @@ def discover_notebooks(base_dir):
             title = notebook_title(fname)
             entries.append((rel, title))
     return entries
-
-
+ 
+ 
 def section_for(folder_name):
     """Return the section heading for a given folder name."""
     prefix = folder_prefix(folder_name)
     return SECTION_MAP.get(prefix, "Other")
+ 
