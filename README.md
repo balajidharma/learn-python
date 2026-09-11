@@ -15,13 +15,11 @@
 
 ## Table of Contents
 
-### 🚀 Getting Started
+### 🐍 Basics
 
 **01.** 📄 [Introduction](01_Introduction/01_Introduction.ipynb)
 
 **02.** 📄 [Setup Environment](02_Setup_Environment/01_Setup_Environment.ipynb)
-
-### 🧠 Core Language
 
 **03.** 📄 [Basic Syntax](03_Basic_Syntax/01_Basic_Syntax.ipynb)
 
@@ -29,8 +27,6 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;↳ [Variables](04_Variables_Data_Types/01_Variables.ipynb)
 &nbsp;&nbsp;&nbsp;&nbsp;↳ [Data Types](04_Variables_Data_Types/02_Data_Types.ipynb)
-
-### ⚙️ Operators
 
 **05.** 📁 **Operators**
 
@@ -42,8 +38,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;↳ [Bitwise Operators](05_Operators/06_Bitwise_Operators.ipynb)
 &nbsp;&nbsp;&nbsp;&nbsp;↳ [Special Operators](05_Operators/07_Special_Operators.ipynb)
 
-### 🔧 Language Features
-
 **06.** 📄 [Strings](06_Strings/01_Strings.ipynb)
 
 **07.** 📄 [Typecasting](07_Typecasting/01_Typecasting.ipynb)
@@ -52,25 +46,25 @@
 
 **09.** 📄 [Functions](10_Functions/01_Functions.ipynb)
 
-**10.** 📄 [Exceptions](16_Exceptions/01_Exceptions.ipynb)
+### ⚙️ Intermediate
 
-**11.** 📄 [User Input](17_User_Input/01_User_Input.ipynb)
+**10.** 📄 [Collections](11_Collections/01_Collections.ipynb)
 
-### 📦 Collections
+**11.** 📄 [Lists](12_Lists/01_Lists.ipynb)
 
-**12.** 📄 [Collections](11_Collections/01_Collections.ipynb)
+**12.** 📄 [Tuples](13_Tuples/01_Tuples.ipynb)
 
-**13.** 📄 [Lists](12_Lists/01_Lists.ipynb)
+**13.** 📄 [Sets](14_Sets/01_Sets.ipynb)
 
-**14.** 📄 [Tuples](13_Tuples/01_Tuples.ipynb)
+**14.** 📄 [Dictionaries](15_Dictionaries/01_Dictionaries.ipynb)
 
-**15.** 📄 [Sets](14_Sets/01_Sets.ipynb)
+**15.** 📄 [Exceptions](16_Exceptions/01_Exceptions.ipynb)
 
-**16.** 📄 [Dictionaries](15_Dictionaries/01_Dictionaries.ipynb)
+**16.** 📄 [User Input](17_User_Input/01_User_Input.ipynb)
 
 ---
 
-## 🚀 Getting Started
+## 🐍 Getting Started
 
 1. **Clone the repository**
    ```bash

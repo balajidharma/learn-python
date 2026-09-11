@@ -3,8 +3,9 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from notebooks import (
-    GITHUB_REPO, LOGO_SVG, SKIP_DIRS,
-    discover_notebooks, section_for, folder_prefix,
+    GITHUB_REPO, LOGO_SVG,
+    SECTION_ORDER, SECTION_ICONS,
+    discover_notebooks, section_for,
 )
 
 BADGE_COLOR = "FFD43B&labelColor=3776AB"
@@ -22,16 +23,6 @@ def folder_display_name(folder):
     return name
 
 
-SECTION_ICONS = {
-    "Getting Started":    "🚀",
-    "Core Language":      "🧠",
-    "Operators":          "⚙️",
-    "Language Features":  "🔧",
-    "Collections":        "📦",
-    "Other":              "📄",
-}
-
-
 def build_readme(base_dir, notebooks):
     # Group notebooks by folder
     folders = {}
@@ -39,8 +30,9 @@ def build_readme(base_dir, notebooks):
         folder = path.split(os.sep)[0]
         folders.setdefault(folder, []).append((path, title))
 
-    # Group folders by section
-    sections = {}
+    # Group folders by section, preserving SECTION_ORDER
+    sections = {s: [] for s in SECTION_ORDER}
+    sections["Other"] = []
     for folder in folders:
         section = section_for(folder)
         sections.setdefault(section, []).append(folder)
@@ -70,7 +62,11 @@ def build_readme(base_dir, notebooks):
 
     # ── TOC: section → folder → notebooks ─────────────────────────────────────
     global_index = 1
-    for section, section_folders in sections.items():
+    for section in SECTION_ORDER + ["Other"]:
+        section_folders = sections.get(section, [])
+        if not section_folders:
+            continue
+
         icon = SECTION_ICONS.get(section, "📄")
         lines.append(f"### {icon} {section}")
         lines.append("")
@@ -98,7 +94,7 @@ def build_readme(base_dir, notebooks):
     lines += [
         "---",
         "",
-        "## 🚀 Getting Started",
+        "## 🐍 Getting Started",
         "",
         "1. **Clone the repository**",
         "   ```bash",
