@@ -1,14 +1,11 @@
 import os
 import sys
 
-# Allow running from anywhere — resolve sibling notebooks.py
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from notebooks import (
     GITHUB_REPO, LOGO_SVG, SKIP_DIRS,
-    discover_notebooks, section_for,
+    discover_notebooks, section_for, folder_prefix,
 )
-
-# ── README builder ─────────────────────────────────────────────────────────────
 
 BADGE_COLOR = "FFD43B&labelColor=3776AB"
 
@@ -17,13 +14,36 @@ def shields_badge(label, message, url, color=BADGE_COLOR):
     return f'<a href="{url}"><img src="{img}" alt="{label}"></a>'
 
 
+def folder_display_name(folder):
+    import re
+    name = re.sub(r"^\d+_", "", folder)
+    name = name.replace("_", " ")
+    name = name.replace("Variables Data Types", "Variables & Data Types")
+    return name
+
+
+SECTION_ICONS = {
+    "Getting Started":    "🚀",
+    "Core Language":      "🧠",
+    "Operators":          "⚙️",
+    "Language Features":  "🔧",
+    "Collections":        "📦",
+    "Other":              "📄",
+}
+
+
 def build_readme(base_dir, notebooks):
-    # Group notebooks by section, preserving order
-    sections = {}
+    # Group notebooks by folder
+    folders = {}
     for path, title in notebooks:
         folder = path.split(os.sep)[0]
+        folders.setdefault(folder, []).append((path, title))
+
+    # Group folders by section
+    sections = {}
+    for folder in folders:
         section = section_for(folder)
-        sections.setdefault(section, []).append((path, title))
+        sections.setdefault(section, []).append(folder)
 
     lines = []
 
@@ -39,6 +59,7 @@ def build_readme(base_dir, notebooks):
         '  ' + shields_badge("Stars", "★", f"{GITHUB_REPO}/stargazers"),
         '  ' + shields_badge("Forks", "fork", f"{GITHUB_REPO}/network/members"),
         '  ' + shields_badge("License", "MIT", f"{GITHUB_REPO}/blob/main/LICENSE"),
+        '  ' + shields_badge("Python", "3.11+", "https://www.python.org/downloads/", "3776AB&labelColor=FFD43B"),
         '</div>',
         '',
         '---',
@@ -47,25 +68,37 @@ def build_readme(base_dir, notebooks):
         '',
     ]
 
-    # ── TOC tables per section ─────────────────────────────────────────────────
+    # ── TOC: section → folder → notebooks ─────────────────────────────────────
     global_index = 1
-    for section, entries in sections.items():
-        lines.append(f"### {section}")
+    for section, section_folders in sections.items():
+        icon = SECTION_ICONS.get(section, "📄")
+        lines.append(f"### {icon} {section}")
         lines.append("")
-        lines.append("| # | Topic | Notebook |")
-        lines.append("|---|-------|----------|")
-        for path, title in entries:
-            # URL-encode spaces for markdown links
-            link_path = path.replace(" ", "%20").replace("\\", "/")
-            lines.append(f"| {global_index:02d} | {title} | [{os.path.basename(path)}]({link_path}) |")
-            global_index += 1
-        lines.append("")
+
+        for folder in section_folders:
+            folder_name = folder_display_name(folder)
+            entries = folders[folder]
+
+            if len(entries) == 1:
+                path, title = entries[0]
+                link_path = path.replace(" ", "%20").replace("\\", "/")
+                lines.append(f"**{global_index:02d}.** 📄 [{folder_name}]({link_path})")
+                lines.append("")
+                global_index += 1
+            else:
+                lines.append(f"**{global_index:02d}.** 📁 **{folder_name}**")
+                lines.append("")
+                global_index += 1
+                for path, title in entries:
+                    link_path = path.replace(" ", "%20").replace("\\", "/")
+                    lines.append(f"&nbsp;&nbsp;&nbsp;&nbsp;↳ [{title}]({link_path})")
+                lines.append("")
 
     # ── Getting Started ────────────────────────────────────────────────────────
     lines += [
         "---",
         "",
-        "## Getting Started",
+        "## 🚀 Getting Started",
         "",
         "1. **Clone the repository**",
         "   ```bash",
@@ -87,14 +120,14 @@ def build_readme(base_dir, notebooks):
         "",
         "---",
         "",
-        "## Contributing",
+        "## 🤝 Contributing",
         "",
         "Contributions, issues, and feature requests are welcome!  ",
         f"Feel free to open a [pull request]({GITHUB_REPO}/pulls) or [issue]({GITHUB_REPO}/issues).",
         "",
         "---",
         "",
-        "## License",
+        "## 📄 License",
         "",
         f"This project is open source and available under the [MIT License]({GITHUB_REPO}/blob/main/LICENSE).",
         "",
@@ -110,7 +143,6 @@ def build_readme(base_dir, notebooks):
 
 
 def main():
-    # Script lives in .scripts/ — one level up is the repo root
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     print(f"Repo root: {base_dir}")
 
