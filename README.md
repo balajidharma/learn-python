@@ -42,25 +42,36 @@
 
 **07.** 📄 [Typecasting](07_Typecasting/01_Typecasting.ipynb)
 
-**08.** 📄 [Loops](09_Loops/01_Loops.ipynb)
+**08.** 📁 **Conditionals**
 
-**09.** 📄 [Functions](10_Functions/01_Functions.ipynb)
+&nbsp;&nbsp;&nbsp;&nbsp;↳ [Conditionals](08_Conditionals/01_Conditionals.ipynb)
+&nbsp;&nbsp;&nbsp;&nbsp;↳ [If Else](08_Conditionals/02_If_Else.ipynb)
+&nbsp;&nbsp;&nbsp;&nbsp;↳ [Ternary Operator](08_Conditionals/03_Ternary_Operator.ipynb)
+&nbsp;&nbsp;&nbsp;&nbsp;↳ [Match](08_Conditionals/04_Match.ipynb)
+&nbsp;&nbsp;&nbsp;&nbsp;↳ [While Loop](08_Conditionals/05_While_Loop.ipynb)
+&nbsp;&nbsp;&nbsp;&nbsp;↳ [For Loop](08_Conditionals/06_For_Loop.ipynb)
+&nbsp;&nbsp;&nbsp;&nbsp;↳ [Break Continue Pass](08_Conditionals/07_Break_Continue_Pass.ipynb)
+&nbsp;&nbsp;&nbsp;&nbsp;↳ [Comprehensions](08_Conditionals/08_Comprehensions.ipynb)
+
+**09.** 📄 [Loops](09_Loops/01_Loops.ipynb)
+
+**10.** 📄 [Functions](10_Functions/01_Functions.ipynb)
 
 ### ⚙️ Intermediate
 
-**10.** 📄 [Collections](11_Collections/01_Collections.ipynb)
+**11.** 📄 [Collections](11_Collections/01_Collections.ipynb)
 
-**11.** 📄 [Lists](12_Lists/01_Lists.ipynb)
+**12.** 📄 [Lists](12_Lists/01_Lists.ipynb)
 
-**12.** 📄 [Tuples](13_Tuples/01_Tuples.ipynb)
+**13.** 📄 [Tuples](13_Tuples/01_Tuples.ipynb)
 
-**13.** 📄 [Sets](14_Sets/01_Sets.ipynb)
+**14.** 📄 [Sets](14_Sets/01_Sets.ipynb)
 
-**14.** 📄 [Dictionaries](15_Dictionaries/01_Dictionaries.ipynb)
+**15.** 📄 [Dictionaries](15_Dictionaries/01_Dictionaries.ipynb)
 
-**15.** 📄 [Exceptions](16_Exceptions/01_Exceptions.ipynb)
+**16.** 📄 [Exceptions](16_Exceptions/01_Exceptions.ipynb)
 
-**16.** 📄 [User Input](17_User_Input/01_User_Input.ipynb)
+**17.** 📄 [User Input](17_User_Input/01_User_Input.ipynb)
 
 ---
 

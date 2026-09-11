@@ -19,7 +19,7 @@ SECTION_MAP = {
     "05": "Basics",       # Operators
     "06": "Basics",       # Strings
     "07": "Basics",       # Typecasting
-    "08": "Basics",       # (reserved)
+    "08": "Basics",       # Conditionals
     "09": "Basics",       # Loops
     "10": "Basics",       # Functions
     "11": "Intermediate", # Collections
