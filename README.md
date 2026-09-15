@@ -55,7 +55,16 @@
 
 **09.** 📄 [Loops](09_Loops/01_Loops.ipynb)
 
-**10.** 📄 [Functions](10_Functions/01_Functions.ipynb)
+**10.** 📁 **Functions**
+
+&nbsp;&nbsp;&nbsp;&nbsp;↳ [Functions](10_Functions/01_Functions.ipynb)
+&nbsp;&nbsp;&nbsp;&nbsp;↳ [Function Arguments](10_Functions/02_Function_Arguments.ipynb)
+&nbsp;&nbsp;&nbsp;&nbsp;↳ [Return Values](10_Functions/03_Return_Values.ipynb)
+&nbsp;&nbsp;&nbsp;&nbsp;↳ [Scope and Namespaces](10_Functions/04_Scope_and_Namespaces.ipynb)
+&nbsp;&nbsp;&nbsp;&nbsp;↳ [Lambda Functions](10_Functions/05_Lambda_Functions.ipynb)
+&nbsp;&nbsp;&nbsp;&nbsp;↳ [Recursion](10_Functions/06_Recursion.ipynb)
+&nbsp;&nbsp;&nbsp;&nbsp;↳ [Decorators](10_Functions/07_Decorators.ipynb)
+&nbsp;&nbsp;&nbsp;&nbsp;↳ [Docstrings and Type Hints](10_Functions/08_Docstrings_and_Type_Hints.ipynb)
 
 ### ⚙️ Intermediate
 
